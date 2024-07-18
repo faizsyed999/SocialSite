@@ -1,0 +1,71 @@
+@use 'base';
+$ten_margin : 10px;
+
+@mixin common_margin {
+    margin: 10px;
+}
+
+.post_box{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.08),0 8px 12px 0 rgba(5, 2, 2, 0.12)
+
+}
+.posts_container{
+    margin: $ten_margin;
+}
+.profile_info {
+    display: flex;
+    align-items: center;
+
+
+}
+.username{
+    // margin-left: 10px;
+}
+img.photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin: 10px;
+    // margin-left: 10px;
+}
+.post_stats {
+    display: flex;
+}
+.likeBox{
+    width: 50%;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.commentBox {
+    width: 50%;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+.content_box{
+    margin: $ten_margin;
+}
+.comments_section {
+    // width: 80%; 
+    margin: $ten_margin;
+    border: 1px solid brown;
+    border-radius: 6px;
+
+}
+.commenter_name{
+    @include base.margin(0,0,0,0);
+    display: inline;
+
+}
+.commenter_comment{
+    @include base.margin(0,0,0,0);
+    display: inline;
+
+}
