@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import HomePage from "../components/HomePage";
 import { validateToken } from "../utils/Auth";
-import { redirect } from "react-router-dom";
 import { Post } from "../types/Types"
 import { endpoint } from "../utils/Constants";
 import Login from '../components/Login'
@@ -39,7 +38,7 @@ export default function Home(): ReactNode {
     //if feed is empty then render the login page
     //otherwise render the home page
 
-    return <HomePage></HomePage>; //todo pass feed params 
+    return <HomePage feed={feed}></HomePage>; //todo pass feed params 
 }
 
 async function getFeed(token: string): Promise<Response> {
