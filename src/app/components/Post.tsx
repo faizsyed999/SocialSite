@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import styles from'../../styles/post.css';
+import '../../styles/post.css';
 
 type params = {
     username: string,

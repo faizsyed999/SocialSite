@@ -1,6 +1,7 @@
 import { Fragment, ReactNode } from "react";
 import {Post} from "../types/Types"
 import PostElement from './Post';
+import '../../styles/homepage.css';
 
 export default function HomePage({feed} : {feed : Array<Post>}) : ReactNode {
 
