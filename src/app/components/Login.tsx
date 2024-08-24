@@ -1,7 +1,9 @@
 import '../../styles/login.css';
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { redirect } from 'react-router-dom';
 import { endpoint } from '../utils/Constants';
+import Register from './Register';
+import FormContainer from './FormContainer';
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -9,9 +11,10 @@ export default function Login() {
     const [status, setStatus] = useState("pending");
     const [register, setRegister] = useState(false);
 
-    // todo validate token if alredy present
-    // if valid, redirect to HomePage
-
+    if(register){
+        // take user to register page.
+        return <Register></Register>;
+    }
 
 
     const invalidInfo = <p>Invalid username or password!</p>;
@@ -21,10 +24,12 @@ export default function Login() {
         else
             setPassword(e.target.value);
 
-        setStatus(`pending`); 
+        setStatus(`pending`);
     };
 
-    const SignInFlow = async () => {
+    const SignInFlow = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        e.preventDefault();
+        
         const loginEndpoint: string = `${endpoint}/auth/login/`;
         const loginResponse = await fetch(loginEndpoint, {
             method: "POST",
@@ -44,26 +49,23 @@ export default function Login() {
     }
 
     return (
-        <div className="PageContainer">
-            <div className="LoginBox">
-                <div className="LoginForm">
-                    <h3 className="WelcomeField">Welcome</h3>
+            <FormContainer>
+                <>
+                    <h3 className="WelcomeField">Welcome!</h3>
+
                     <div className="FieldBox">
-                        <input type="text" name='username' id='username' placeholder='Username' className="UserNameField" onChange={fieldChangeHandler} />
-                        <input type="text" name='password' id='password' placeholder='Password' className="PasswordField" onChange={fieldChangeHandler} />
-                        <input type="button" value="Login" className="LoginButton" onClick={SignInFlow} />
+                        <input type="text" name='username' id='username' placeholder='Username' className='UserNameField' onChange={fieldChangeHandler} />
+                        <input type="text" name='password' id='password' placeholder='Password' className='PasswordField' onChange={fieldChangeHandler} />
+                        <input type='button' value={register ? `Register` : `Login`} className='LoginButton' onClick={SignInFlow} />
                         {status == `invalid` ? invalidInfo : null}
                     </div>
-                    {
-                        !register &&
-                        <div className="register">
-                            <a href="" onClick={ChangeEvent =>  setRegister(true) } className="register_button">
-                                <h3>Register Now!</h3>
-                            </a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
+                    <div className='register'>
+                        <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className="register_button">
+                            <h3>Register Now!</h3>
+                        </a>
+
+                    </div>
+                    </>
+            </FormContainer>
     );
 }

@@ -8,7 +8,7 @@
 .LoginBox {
   width: 500px;
   height: 750px;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.08), 0 0 12px 0 rgba(5, 2, 2, 0.12);;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 8px 12px 0 rgba(5, 2, 2, 0.12);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,20 +30,8 @@
 }
 
 .register {
-  position: relative;
-  height: 80px;
-  /* margin-top: 25px; */
+  margin-top: 70px;
   text-align: center;
-}
-/* .register a h3 {
-  margin: 0 auto;
-} */
-.register a{
-  margin: 0;
-  position: absolute;
-  /* margin: 0; */
-  top: 50%;
-  transform: translateX(-50%);
 }
 
 .register_button {
@@ -59,5 +47,7 @@
 
 .LoginButton {
   margin-top: 20px;
-  width: 100px;
+  width: 45px;
 }
+
+/*# sourceMappingURL=formcontainer.css.map */
