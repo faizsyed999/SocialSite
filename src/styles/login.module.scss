@@ -32,6 +32,25 @@
     text-decoration: none;
 }
 
+@keyframes shakeframe {
+    0% {
+      margin-left: 0rem;
+    }
+    25% {
+      margin-left: 0.5rem;
+    }
+    75% {
+      margin-left: -0.5rem;
+    }
+    100% {
+      margin-left: 0rem;
+    }
+  }
+
+
+.shake {
+ animation: shakeframe 0.2s;
+}
 // .mainLoginInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */ todo
 //     font-family: 'myFont', Arial, Helvetica, sans-serif;
 //     opacity: 1; /* Firefox */

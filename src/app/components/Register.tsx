@@ -1,5 +1,10 @@
 import { useState } from "react";
 import FormContainer from "./FormContainer";
+import { endpoint } from "../utils/Constants";
+import { redirect } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
+
 const fieldChangeHandler = (ChangeEvent :  React.ChangeEvent<HTMLInputElement>) =>{
     const target = ChangeEvent.target;
     target.id;
@@ -8,17 +13,41 @@ const fieldChangeHandler = (ChangeEvent :  React.ChangeEvent<HTMLInputElement>) 
     
 }
 
-const buttonHandler = (ChangeE :  React.MouseEvent<HTMLInputElement>) =>{
-    const tt = ChangeE.target as HTMLInputElement;
-    
-    
-    // todo
-    
-}
+
 export default function Register() {
     const [username, setUsername]= useState(``)
     const [password, setPassword]= useState(``)
+    const navigateObject = useNavigate();
+    
+    const buttonHandler = async (ChangeE :  React.MouseEvent<HTMLInputElement, MouseEvent>) =>{
+        ChangeE.preventDefault();
+        
+        
+        if(username==`` || password==``)
+        {
+            // input not valid, alert the user
+        } else {
+            const registerEndpoint: string = `${endpoint}/auth/register/`;
+            const loginResponse = await fetch(registerEndpoint, {
+                method: "POST",
+                body: JSON.stringify({ "username": username, "password": password }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            });
+            if (loginResponse.status == 200) {
+                loginResponse.json().then(data => localStorage.setItem(`token`, data.signInToken));
+    
+                return navigateObject(`/`);
+                // if sign in is successful then send user to homepage
+            }
+        }
 
+
+        // todo
+        
+    }
     return (
     <FormContainer>
         <>
