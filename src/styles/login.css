@@ -5,15 +5,6 @@
   align-items: center;
 }
 
-.LoginBox {
-  width: 500px;
-  height: 750px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 8px 12px 0 rgba(5, 2, 2, 0.12);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .WelcomeField {
   text-align: center;
 }
@@ -66,6 +57,9 @@
 .LoginButton {
   margin-top: 20px;
   width: 45px;
+}
+
+@media screen and (max-width: 980px) and (min-width: 400px) {
 }
 
 /*# sourceMappingURL=login.css.map */

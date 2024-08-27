@@ -49,5 +49,16 @@
   margin-top: 20px;
   width: 45px;
 }
+@media screen and (max-width: 980px) and (min-width: 400px) {
+  .LoginBox {
+    width: 500px;
+    height: 750px;
+    border: 0;
+    display: flex;
+    /* box-shadow: none; */
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 /*# sourceMappingURL=formcontainer.css.map */

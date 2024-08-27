@@ -1,17 +1,3 @@
-.PageContainer {
-    height: 100dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.LoginBox {
-    width: 500px;
-    height: 750px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08),0 8px 12px 0 rgba(5, 2, 2, 0.12);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .WelcomeField{
     text-align: center;
 }
@@ -55,9 +41,7 @@
 //     font-family: 'myFont', Arial, Helvetica, sans-serif;
 //     opacity: 1; /* Firefox */
 //   }
-.ErrorMessage {
-    // display: none;
-}
+
 .FieldBox {
 
     display: flex;
@@ -68,4 +52,8 @@
 .LoginButton {
     margin-top: 20px;
     width: 45px;
+}
+
+@media screen and (max-width: 900px) and (min-width: 500px) {
+
 }
