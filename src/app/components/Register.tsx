@@ -1,40 +1,28 @@
 import { useState } from "react";
 import FormContainer from "./FormContainer";
 import { endpoint } from "../utils/Constants";
-import { redirect } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-
-
-const fieldChangeHandler = (ChangeEvent: React.ChangeEvent<HTMLInputElement>) => {
-    const target = ChangeEvent.target;
-    target.id;
-
-    // todo
-
-}
-
+import '../../styles/register.css';
 
 export default function Register() {
     const [username, setUsername] = useState(``)
-    const [password, setPassword] = useState(``)
-    const [usernameInvalid, setUsernameInvalid] = useState(false);
-    const [passwordInvalid, setPasswordInvalid] = useState(false);
-    const navigateObject = useNavigate();
-    const usernameClass: string = `UserNameField ${usernameInvalid ? `shake` : ``}`;
-    const passwordClass: string = `PasswordField ${passwordInvalid ? `shake` : ``}`;
+    const [passwordobj, setPassword] = useState({password: ``, repassword: ``})
+    const [usernameInvalid, setUsernameInvalid] = useState(false)
+    const [passwordInvalid, setPasswordInvalid] = useState(false)
 
+    const navigateObject = useNavigate()
 
-    const buttonHandler = async (ChangeE: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        ChangeE.preventDefault();
+    const buttonHandler = async (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        event.preventDefault();
 
+        if (username == ``) setUsernameInvalid(true)
+        if (passwordobj.password == ``) setPasswordInvalid(true)
+        if(passwordobj.password != passwordobj.repassword) setPasswordInvalid(true)
 
-        if (username == ``) setUsernameInvalid(true);
-        if (password == ``) setPasswordInvalid(true);
-        
-        const registerEndpoint: string = `${endpoint}/auth/register/`;
+        const registerEndpoint: string = `${endpoint}/auth/register/`
         const loginResponse = await fetch(registerEndpoint, {
             method: "POST",
-            body: JSON.stringify({ "username": username, "password": password }),
+            body: JSON.stringify({ "username": username, "password": passwordobj.password.split(``), "repassword": passwordobj.repassword.split(``) }),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -43,11 +31,14 @@ export default function Register() {
         if (loginResponse.status == 200) {
             loginResponse.json().then(data => localStorage.setItem(`token`, data.signInToken));
 
-            return navigateObject(`/`);
-            // if sign in is successful then send user to homepage
-        }
+            return navigateObject(`/`);             // if sign in is successful then send user to homepage
 
+        }
     }
+
+    const usernameClass: string = `UserNameField ${usernameInvalid ? `shake` : ``}`
+    const passwordClass: string = `PasswordField ${passwordInvalid ? `shake` : ``}`
+    
     return (
         <FormContainer>
             <>
@@ -55,8 +46,13 @@ export default function Register() {
 
                 <div className="FieldBox">
                     <input type="text" name="username" id="username" placeholder='Username' className={usernameClass} onChange={e => setUsername(e.target.value)} />
-                    <input type="password" name="password" id='password' placeholder='Password' className={passwordClass} onChange={e => setPassword(e.target.value)} />
-                    <input type="password" name='password' id='confirmpassword' placeholder='Reenter Password' className='PasswordField' onChange={fieldChangeHandler} />
+
+                    <input type="password" name="password" id='password' placeholder='Password' className={passwordClass} 
+                                        onChange={e => setPassword({password : e.target.value, repassword : passwordobj.repassword})} />
+
+                    <input type="password" name='password' id='confirmpassword' placeholder='Reenter Password' className={passwordClass} 
+                                        onChange={e => setPassword({password : passwordobj.password, repassword : e.target.value})} />
+
                     <input type="button" name='button' id='registerbutton' className='PasswordField' onClick={buttonHandler} />
                 </div>
             </>

@@ -41,7 +41,7 @@ export default function Login() {
         const loginEndpoint: string = `${endpoint}/auth/login/`;
         const loginResponse = await fetch(loginEndpoint, {
             method: "POST",
-            body: JSON.stringify({ "username": username, "password": password, "register": register }),
+            body: JSON.stringify({ "username": username, "password": password.split(``)}),
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -67,7 +67,7 @@ export default function Login() {
                     {/* <input type="text" name='username' id='username' placeholder='Username' className='UserNameField' onChange={fieldChangeHandler} /> */}
                     <input type="text" name='username' id='username' placeholder='Username' className={inputClasses} onChange={fieldChangeHandler} />
                     <input type="text" name='password' id='password' placeholder='Password' className={inputClasses2} onChange={fieldChangeHandler} />
-                    <input type='button' value={register ? `Register` : `Login`} className='LoginButton' onClick={SignInFlow} />
+                    <input type='button' value="Login" className='LoginButton' onClick={SignInFlow} />
                     {status == `invalid` ? invalidInfo : null}
                 </div>
                 <div className='register'>
