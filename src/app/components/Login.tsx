@@ -67,7 +67,7 @@ export default function Login() {
                     <input type='button' value="Login" className={Styles.LoginButton} onClick={SignInFlow} />
                     {status == `invalid` ? invalidInfo : null}
                 </div>
-                <div className='register'>
+                <div className={Styles.register}>
                     <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className={Styles.register_button}>
                         <h3>Register Now!</h3>
                     </a>

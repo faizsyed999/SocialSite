@@ -6,7 +6,9 @@ export default function FormContainer({ children }: { children: React.ReactEleme
     return (
         <div className={Styles.PageContainer}>
             <div className={Styles.WrapperBox}>
-                {children}
+                <div className='loginForm'>
+                    {children}
+                </div>
             </div>
         </div>
     )

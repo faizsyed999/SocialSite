@@ -53,7 +53,7 @@ export default function Register() {
                     <input type="password" name='password' id='confirmpassword' placeholder='Reenter Password' className={passwordClass} 
                                         onChange={e => setPassword({password : passwordobj.password, repassword : e.target.value})} />
 
-                    <input type="button" name='button' id='registerbutton' className={Styles.RegisterButton} onClick={buttonHandler} />
+                    <input type="button" name='button' id='registerbutton' value='Sign Up' className={Styles.RegisterButton} onClick={buttonHandler} />
                 </div>
             </>
         </FormContainer>
