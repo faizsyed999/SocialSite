@@ -1,0 +1,25 @@
+// $name : 'pink';
+// $Thirty : 30px;
+
+@mixin border_box($boxname) {
+    #{$boxname} {
+        box-sizing: border-box;
+        @content;
+    }
+} 
+
+// hz = horizontal laid list
+
+@mixin padding($paddingleft : auto, $paddingright : auto, $paddingtop : auto, $paddingbotton : auto) {
+    padding-left: $paddingleft;
+    padding-right: $paddingright;
+    padding-top: $paddingtop;
+    padding-bottom: $paddingbottom;
+}
+
+@mixin margin($marginleft : auto, $marginright : auto, $margintop : auto, $marginbottom : auto) {
+    margin-left: $marginleft;
+    margin-right: $marginright;
+    margin-top: $margintop;
+    margin-bottom: $marginbottom;
+}

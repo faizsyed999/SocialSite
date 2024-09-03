@@ -1,0 +1,28 @@
+.PageContainer {
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginBox {
+  width: 500px;
+  height: 750px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 8px 12px 0 rgba(5, 2, 2, 0.12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) and (min-width: 400px) {
+  .LoginBox {
+    width: 500px;
+    height: 750px;
+    border: 0;
+    display: flex;
+    box-shadow: none;
+    justify-content: center;
+    align-items: center;
+  }
+}
+/*# sourceMappingURL=formcontainer.module.css.map */

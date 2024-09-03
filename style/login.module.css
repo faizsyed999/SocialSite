@@ -1,0 +1,53 @@
+.WelcomeField {
+  text-align: center;
+}
+
+.UserNameField {
+  width: 300px;
+  height: 32px;
+}
+
+.PasswordField {
+  width: 300px;
+  margin-top: 10px;
+  height: 32px;
+}
+
+.register {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.register_button {
+  text-decoration: none;
+}
+
+@keyframes shakeframe {
+  0% {
+    margin-left: 0rem;
+  }
+  25% {
+    margin-left: 0.5rem;
+  }
+  75% {
+    margin-left: -0.5rem;
+  }
+  100% {
+    margin-left: 0rem;
+  }
+}
+.shake {
+  animation: shakeframe 0.2s;
+}
+
+.FieldBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginButton {
+  margin-top: 20px;
+  width: 45px;
+}/*# sourceMappingURL=login.module.css.map */
