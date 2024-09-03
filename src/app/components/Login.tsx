@@ -1,4 +1,4 @@
-import '../../styles/login.css';
+import Styles from '../../styles/sources/login.module.scss';
 import { useState } from 'react';
 import { endpoint } from '../utils/Constants';
 import Register from './Register';
@@ -13,10 +13,8 @@ export default function Login() {
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
 
-    if (register) {
-        // take user to register page.
-        return <Register></Register>;
-    }
+    if (register) return <Register></Register>;
+    
 
 
     const invalidInfo = <p>Invalid username or password!</p>;
@@ -56,22 +54,21 @@ export default function Login() {
         // else setStatus(`invalid`);
         else setPasswordValid(false);
     }
-    const inputClasses : string= `UserNameField ${usernameValid ? `shake` : ``}` ;
-    const inputClasses2 : string= `PasswordField ${passwordValid ? `shake` : ``}` ;
+    const inputClasses : string= `${Styles.UsernameField} ${usernameValid ? `${Styles.shake}` : ``}` ;
+    const inputClasses2 : string= `${Styles.PasswordField} ${passwordValid ? `${Styles.shake}` : ``}` ;
     return (
         <FormContainer>
             <>
-                <h3 className="WelcomeField">Welcome!</h3>
+                <h3 className={Styles.login_welcomefield}>Welcome!</h3>
 
-                <div className="FieldBox">
-                    {/* <input type="text" name='username' id='username' placeholder='Username' className='UserNameField' onChange={fieldChangeHandler} /> */}
+                <div className={Styles.login_fieldBox}>
                     <input type="text" name='username' id='username' placeholder='Username' className={inputClasses} onChange={fieldChangeHandler} />
                     <input type="text" name='password' id='password' placeholder='Password' className={inputClasses2} onChange={fieldChangeHandler} />
-                    <input type='button' value="Login" className='LoginButton' onClick={SignInFlow} />
+                    <input type='button' value="Login" className={Styles.LoginButton} onClick={SignInFlow} />
                     {status == `invalid` ? invalidInfo : null}
                 </div>
                 <div className='register'>
-                    <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className="register_button">
+                    <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className={Styles.register_button}>
                         <h3>Register Now!</h3>
                     </a>
 

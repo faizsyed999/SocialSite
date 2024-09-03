@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import HomePage from "../components/HomePage";
 import { validateToken } from "../utils/Auth";
 import { Post } from "../types/Types"
@@ -7,32 +7,30 @@ import Login from '../components/Login'
 
 export default function Home(): ReactNode {
     let [feed, setFeed] = useState<Array<Post>>([]);
+    const tokenValue: string | null = localStorage.getItem(`token`);
+    const [token, setToken] = useState(tokenValue);
 
-    const token: string | null = localStorage.getItem(`token`) || null;
-    
-    useEffect(() => {
-        if (token) {
-            validateToken(token).then(response => {
-                if (response.status == 200) {
-                    //send feed call
-                    //get feed and call setFeed()
-                    getFeed(token).then(response => {
-                        if (response.status === 200)
-                            response.json().then((data: Array<Post>) => setFeed(data))
-                    })
-                }
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    if (token) {
+        validateToken(token).then(response => {
+            if (response.status == 200) {
+                getFeed(token).then(response => {
+                    if (response.status === 200)
+                        response.json().then((data: Array<Post>) => setFeed(data))
+                })
+            } else return <Login></Login>
+        })
+    } else return <Login></Login>
+    // }, [])
 
-    if (feed.length === 0) {
-        return <Login></Login>;
-    }
+    // if (feed.length === 0) {
+    //     return <Login></Login>;
+    // }
 
     //if feed is empty then render the login page
     //otherwise render the home page
 
-    return <HomePage feed={feed}></HomePage>; //todo pass feed params 
+    return <HomePage feed={feed}></HomePage>;
 }
 
 async function getFeed(token: string): Promise<Response> {
@@ -45,9 +43,3 @@ async function getFeed(token: string): Promise<Response> {
     return response;
 }
 
-// async function isValidToken(token : string) : boolean{
-//     validateToken(token).then((response)=>{
-//         if(response.status == 200) return true;
-//          else return false;
-//     })
-// }

@@ -1,14 +1,12 @@
 import React from 'react';
-import '../../styles/formcontainer.css';
+import Styles from '../../styles/sources/formcontainer.module.scss';
 
 
-export default function FormContainer({children} : {children : React.ReactElement}) {
+export default function FormContainer({ children }: { children: React.ReactElement }) {
     return (
-        <div className="PageContainer">
-            <div className="LoginBox">
-                <div className="LoginForm">
-                   {children}
-                </div>
+        <div className={Styles.PageContainer}>
+            <div className={Styles.WrapperBox}>
+                {children}
             </div>
         </div>
     )

@@ -2,7 +2,7 @@ import { useState } from "react";
 import FormContainer from "./FormContainer";
 import { endpoint } from "../utils/Constants";
 import { useNavigate } from "react-router-dom";
-import '../../styles/register.css';
+import Styles from '../../styles/sources/register.module.scss';
 
 export default function Register() {
     const [username, setUsername] = useState(``)
@@ -36,15 +36,15 @@ export default function Register() {
         }
     }
 
-    const usernameClass: string = `UserNameField ${usernameInvalid ? `shake` : ``}`
-    const passwordClass: string = `PasswordField ${passwordInvalid ? `shake` : ``}`
+    const usernameClass: string = `${Styles.UserNameField} ${usernameInvalid ? `${Styles.shake}` : ``}`
+    const passwordClass: string = `${Styles.PasswordField} ${passwordInvalid ? `${Styles.shake}` : ``}`
     
     return (
         <FormContainer>
             <>
-                <h3 className="WelcomeField">Welcome!</h3>
+                <h3 className={Styles.WelcomeField}>Welcome!</h3>
 
-                <div className="FieldBox">
+                <div className={Styles.FieldBox}>
                     <input type="text" name="username" id="username" placeholder='Username' className={usernameClass} onChange={e => setUsername(e.target.value)} />
 
                     <input type="password" name="password" id='password' placeholder='Password' className={passwordClass} 
@@ -53,7 +53,7 @@ export default function Register() {
                     <input type="password" name='password' id='confirmpassword' placeholder='Reenter Password' className={passwordClass} 
                                         onChange={e => setPassword({password : passwordobj.password, repassword : e.target.value})} />
 
-                    <input type="button" name='button' id='registerbutton' className='PasswordField' onClick={buttonHandler} />
+                    <input type="button" name='button' id='registerbutton' className={Styles.RegisterButton} onClick={buttonHandler} />
                 </div>
             </>
         </FormContainer>

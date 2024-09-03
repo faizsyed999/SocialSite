@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.LoginBox {
+.WrapperBox {
   width: 500px;
   height: 750px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08), 0 8px 12px 0 rgba(5, 2, 2, 0.12);
@@ -25,6 +25,3 @@
     align-items: center;
   }
 }
-
-
-/*# sourceMappingURL=formcontainer.css.map */
