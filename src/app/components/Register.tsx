@@ -2,7 +2,7 @@ import { useState } from "react";
 import FormContainer from "./FormContainer";
 import { endpoint } from "../utils/Constants";
 import { useNavigate } from "react-router-dom";
-import Styles from '../../styles/sources/register.module.scss';
+import Styles from '../../styles/register.module.scss';
 
 export default function Register() {
     const [username, setUsername] = useState(``)

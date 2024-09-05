@@ -1,4 +1,4 @@
-import Styles from '../../styles/sources/login.module.scss';
+import Styles from '../../styles/login.module.scss';
 import { useState } from 'react';
 import { endpoint } from '../utils/Constants';
 import Register from './Register';
