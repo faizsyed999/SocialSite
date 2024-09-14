@@ -5,7 +5,7 @@ import Register from './Register';
 import FormContainer from './FormContainer';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({setToken} : {setToken : (token : string) => void }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [status, setStatus] = useState("pending");
@@ -13,7 +13,7 @@ export default function Login() {
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
 
-    if (register) return <Register></Register>;
+    if (register) return <Register setToken={setToken}></Register>;
     
 
 
