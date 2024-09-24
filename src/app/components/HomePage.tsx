@@ -1,9 +1,9 @@
 import { Fragment, ReactNode } from "react";
-import {Post} from "../types/Types"
-import PostElement from './Post';
+import {Post as PostBody} from "../types/Types"
+import Post from './Post';
 import Styles from '../../styles/homepage.module.scss';
 
-export default function HomePage({feed} : {feed : Array<Post>}) : ReactNode {
+export default function HomePage({feed} : {feed : Array<PostBody>}) : ReactNode {
 
 
     return (
@@ -31,8 +31,8 @@ export default function HomePage({feed} : {feed : Array<Post>}) : ReactNode {
                         </div>
                         <div className={Styles.center_area}>
                             {
-                                feed.map(post => <PostElement username={post.user} postContent={post.content} 
-                                    likeCount={post.likes} commentCount={post.comments.length.toString()}></PostElement>)
+                                feed.map(post => <Post username={post.user} postContent={post.content} 
+                                    likeCount={post.likes} commentCount={post.comments.length.toString()}></Post>)
                             }
                         </div>
                     </div>

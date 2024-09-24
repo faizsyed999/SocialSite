@@ -4,21 +4,15 @@ import { Post } from "../types/Types"
 import { endpoint } from "../utils/Constants";
 import Login from '../components/Login'
 
-export default async function Home(): Promise<ReactNode> {
+export default function Home(): ReactNode {
     let [feed, setFeed] = useState<Array<Post>>([])
     let [token, setToken] = useState(localStorage.getItem(`token`))
     
-    useEffect(()=>{
-        if(token != null)
-            localStorage.setItem(`token`, token)
-    }, [token])
-
-
     useEffect(() => {
         const fetchFeed = async (): Promise<void> => {
             if (token) {
-                // validateToken(token).then(response => {
-                //     if (response.status == 200) {
+                localStorage.setItem(`token`, token)
+
                 const response = await getFeed(token);
                                 
                 if (response.status === 200){

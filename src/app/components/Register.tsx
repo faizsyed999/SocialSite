@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FormContainer from "./FormContainer";
 import { endpoint } from "../utils/Constants";
-// import { useNavigate } from "react-router-dom";
+
+import FormContainer from "./FormContainer";
 import Styles from '../../styles/register.module.scss';
 
 export default function Register({ setToken }: { setToken: (token: string) => void }) {
@@ -10,7 +10,6 @@ export default function Register({ setToken }: { setToken: (token: string) => vo
     const [usernameInvalid, setUsernameInvalid] = useState(false)
     const [passwordInvalid, setPasswordInvalid] = useState(false)
 
-    // const navigate = useNavigate()
 
     const buttonHandler = async (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
         event.preventDefault();
