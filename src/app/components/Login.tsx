@@ -3,17 +3,24 @@ import { useState } from 'react';
 import { endpoint } from '../utils/Constants';
 import Register from './Register';
 import FormContainer from './FormContainer';
-import { useNavigate } from 'react-router-dom';
 
 export default function Login({setToken} : {setToken : (token : string) => void }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [status, setStatus] = useState("pending");
+    const [status, setStatus] = useState("pending"); //todo required
     const [register, setRegister] = useState(false);
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
+
+
 
     if (register) return <Register setToken={setToken}></Register>;
+    // if (loggedIn) {
+    //     console.log('nav to home /!');
+        
+    //     navigateObject('/')
+    // }
     
 
 
@@ -34,9 +41,8 @@ export default function Login({setToken} : {setToken : (token : string) => void 
             setUsernameValid(false);
         if(password == "")
             setPasswordValid(false);
-        const navigateObject = useNavigate();
 
-        const loginEndpoint: string = `${endpoint}/auth/login/`;
+        const loginEndpoint: string = `${endpoint}/auth/login`;
         const loginResponse = await fetch(loginEndpoint, {
             method: "POST",
             body: JSON.stringify({ "username": username, "password": password.split(``)}),
@@ -46,9 +52,10 @@ export default function Login({setToken} : {setToken : (token : string) => void 
             }
         });
         if (loginResponse.status == 200) {
-            loginResponse.json().then(data => localStorage.setItem(`token`, data.signInToken));
-
-            return navigateObject(`/`);
+            loginResponse.json().then(data => setToken(data.response));
+            console.log('got teh token');
+            
+            
             // if sign in is successful then send user to homepage
         }
         // else setStatus(`invalid`);

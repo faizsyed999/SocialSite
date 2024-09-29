@@ -32,7 +32,7 @@ export default function Home(): ReactNode {
 }
 
 async function getFeed(token: string): Promise<Response> {
-    const response = fetch(`${endpoint}/feed`, {
+    const response = fetch(`${endpoint}/user/feed`, {
         headers: {
             "Accept": "application/json",
             "Token": token || ""
