@@ -1,11 +1,11 @@
 import { ReactNode, useState, useEffect } from "react";
 import HomePage from "../components/HomePage";
-import { Post } from "../types/Types"
+import { Feed } from "../types/Types"
 import { endpoint } from "../utils/Constants";
 import Login from '../components/Login'
 
 export default function Home(): ReactNode {
-    let [feed, setFeed] = useState<Array<Post>>([])
+    let [feed, setFeed] = useState<Feed>({username: "", posts: []})
     let [token, setToken] = useState(localStorage.getItem(`token`))
     
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function Home(): ReactNode {
         
     if (token === null) return <Login setToken={setToken}></Login>;
 
-    return <HomePage feed={feed}></HomePage>;
+    return <HomePage feed={feed} setToken={setToken}></HomePage>;
 }
 
 async function getFeed(token: string): Promise<Response> {

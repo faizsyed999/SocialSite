@@ -66,3 +66,28 @@
 @media screen and (max-width: 980px) and (min-width: 500px) {
     
 }
+
+.user_dropdown_box{
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.user_dropdown:hover  .user_dropdown_box{
+    display: block;
+    position: absolute;
+    // z-index: 10;
+}
+
+.user_dropdown:hover{
+    display: block;
+}
+
+.user_dropdown_list{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.user_dropdown_box{
+    display: none;
+}

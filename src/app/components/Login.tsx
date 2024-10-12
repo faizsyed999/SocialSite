@@ -3,35 +3,29 @@ import { useState } from 'react';
 import { endpoint } from '../utils/Constants';
 import Register from './Register';
 import FormContainer from './FormContainer';
+import { loginResponse } from "../types/Types"
+import { tokenSetter } from "../types/Types";
 
-export default function Login({setToken} : {setToken : (token : string) => void }) {
+// export default function Login({setToken} : {setToken : (token : string) => void }) {
+export default function Login({setToken} : {setToken: tokenSetter}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [status, setStatus] = useState("pending"); //todo required
+    // const [status, setStatus] = useState("pending"); //todo required
     const [register, setRegister] = useState(false);
     const [usernameValid, setUsernameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
-    // const [loggedIn, setLoggedIn] = useState(false);
-
-
 
     if (register) return <Register setToken={setToken}></Register>;
-    // if (loggedIn) {
-    //     console.log('nav to home /!');
-        
-    //     navigateObject('/')
-    // }
-    
 
 
-    const invalidInfo = <p>Invalid username or password!</p>;
+    // const invalidInfo = <p>Invalid username or password!</p>;
     const fieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.name == `username`)
             setUsername(e.target.value)
         else
             setPassword(e.target.value);
 
-        setStatus(`pending`);
+        // setStatus(`pending`);
     };
 
     const SignInFlow = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -52,7 +46,7 @@ export default function Login({setToken} : {setToken : (token : string) => void 
             }
         });
         if (loginResponse.status == 200) {
-            loginResponse.json().then(data => setToken(data.response));
+            loginResponse.json().then((data : loginResponse) : void => setToken(data.response));
             console.log('got teh token');
             
             
@@ -72,7 +66,7 @@ export default function Login({setToken} : {setToken : (token : string) => void 
                     <input type="text" name='username' id='username' placeholder='Username' className={inputClasses} onChange={fieldChangeHandler} />
                     <input type="text" name='password' id='password' placeholder='Password' className={inputClasses2} onChange={fieldChangeHandler} />
                     <input type='button' value="Login" className={Styles.LoginButton} onClick={SignInFlow} />
-                    {status == `invalid` ? invalidInfo : null}
+                    {/* {status == `invalid` ? invalidInfo : null} */}
                 </div>
                 <div className={Styles.register}>
                     <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className={Styles.register_button}>
