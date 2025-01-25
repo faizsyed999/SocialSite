@@ -1,4 +1,3 @@
-// export type Post = {
 export type Feed = {
     username: string,
     posts: Array<Post>
@@ -10,7 +9,7 @@ export type Post = {
     likes: Array<string>,
     comments: CommentsList,
 }
-type CommentsList = { [key: string]: string }; //index signature
+type CommentsList = { [key: string]: string } //index signature
 
 export type PostComment = {
     "name": string,
@@ -23,7 +22,7 @@ export type loginResponse = {
 }
 
 
-export type tokenSetter =  (token : string | null) => void ;
+export type tokenSetter =  (token : string | null) => void 
 
 
 

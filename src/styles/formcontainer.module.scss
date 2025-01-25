@@ -26,3 +26,9 @@
 //     align-items: center;
 //   }
 // }
+
+@media screen and (max-width: 900px) and (min-width: 500px) {
+  .WrapperBox {
+    box-shadow: none;
+  }
+}

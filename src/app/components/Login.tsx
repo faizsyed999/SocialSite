@@ -47,7 +47,7 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
         });
         if (loginResponse.status == 200) {
             loginResponse.json().then((data : loginResponse) : void => setToken(data.response));
-            console.log('got teh token');
+            console.log('got the token');
             
             
             // if sign in is successful then send user to homepage
@@ -55,8 +55,8 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
         // else setStatus(`invalid`);
         else setPasswordValid(false);
     }
-    const inputClasses : string= `${Styles.UsernameField} ${usernameValid ? `${Styles.shake}` : ``}` ;
-    const inputClasses2 : string= `${Styles.PasswordField} ${passwordValid ? `${Styles.shake}` : ``}` ;
+    const inputClasses : string= `${Styles.UsernameField} ${usernameValid ? `${Styles.shake}` : ``}` 
+    const inputClasses2 : string= `${Styles.PasswordField} ${passwordValid ? `${Styles.shake}` : ``}`
     return (
         <FormContainer>
             <>

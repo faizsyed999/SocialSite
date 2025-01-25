@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import Styles from '../../styles/post.module.scss';
+import { Fragment } from "react"
+import Styles from '../../styles/post.module.scss'
 
 type params = {
     username: string,
@@ -11,6 +11,13 @@ type params = {
 export default function Post({ username, postContent, likeCount, commentCount }: params) {
     let commenterName = "Daisy"
     let commenterComment = "Good night!"
+    // placeholder start
+    const likeC = likeCount
+    const commentC = commentCount
+    console.log(likeC); 
+    console.log(commentC);
+    // placeholder end
+    
     return (
         <Fragment>
             <div className={Styles.posts_container}>

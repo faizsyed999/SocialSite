@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { endpoint } from "../utils/Constants";
+import { useState } from "react"
+import { endpoint } from "../utils/Constants"
 
-import FormContainer from "./FormContainer";
-import Styles from '../../styles/register.module.scss';
+import FormContainer from "./FormContainer"
+import Styles from '../../styles/register.module.scss'
 
 export default function Register({ setToken }: { setToken: (token: string) => void }) {
     const [username, setUsername] = useState(``)
@@ -12,7 +12,7 @@ export default function Register({ setToken }: { setToken: (token: string) => vo
 
 
     const buttonHandler = async (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        event.preventDefault();
+        event.preventDefault()
 
         if (username == ``) 
             setUsernameInvalid(true)
@@ -29,7 +29,7 @@ export default function Register({ setToken }: { setToken: (token: string) => vo
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 }
-            });
+            })
             console.log(loginResponse.status)
 
             if (loginResponse.status == 200) {

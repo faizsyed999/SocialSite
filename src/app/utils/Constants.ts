@@ -1,3 +1,3 @@
-const endpoint : string = "http://localhost:8080";
+const endpoint : string = "http://localhost:8080"
 
 export {endpoint}
