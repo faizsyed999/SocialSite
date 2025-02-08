@@ -12,8 +12,8 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
     const [password, setPassword] = useState("");
     // const [status, setStatus] = useState("pending"); //todo required
     const [register, setRegister] = useState(false);
-    const [usernameValid, setUsernameValid] = useState(false);
-    const [passwordValid, setPasswordValid] = useState(false);
+    const [usernameValid, setUsernameValid] = useState(true);
+    const [passwordValid, setPasswordValid] = useState(true);
 
     if (register) return <Register setToken={setToken}></Register>;
 
@@ -24,8 +24,6 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
             setUsername(e.target.value)
         else
             setPassword(e.target.value);
-
-        // setStatus(`pending`);
     };
 
     const SignInFlow = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -55,8 +53,8 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
         // else setStatus(`invalid`);
         else setPasswordValid(false);
     }
-    const inputClasses : string= `${Styles.UsernameField} ${usernameValid ? `${Styles.shake}` : ``}` 
-    const inputClasses2 : string= `${Styles.PasswordField} ${passwordValid ? `${Styles.shake}` : ``}`
+    const inputClasses : string= `${Styles.UsernameField} ${usernameValid ? `` : `${Styles.shake}`}` 
+    const inputClasses2 : string= `${Styles.PasswordField} ${passwordValid ? `` : `${Styles.shake}`}`
     return (
         <FormContainer>
             <>
@@ -64,9 +62,8 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
 
                 <div className={Styles.login_fieldBox}>
                     <input type="text" name='username' id='username' placeholder='Username' className={inputClasses} onChange={fieldChangeHandler} />
-                    <input type="text" name='password' id='password' placeholder='Password' className={inputClasses2} onChange={fieldChangeHandler} />
+                    <input type="password" name='password' id='password' placeholder='Password' className={inputClasses2} onChange={fieldChangeHandler} />
                     <input type='button' value="Login" className={Styles.LoginButton} onClick={SignInFlow} />
-                    {/* {status == `invalid` ? invalidInfo : null} */}
                 </div>
                 <div className={Styles.register}>
                     <a href='' onClick={(ChangeEvent) => { ChangeEvent.preventDefault(); setRegister(true) }} className={Styles.register_button}>

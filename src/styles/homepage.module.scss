@@ -78,8 +78,15 @@ body{
 }
 .Vertical_Menu{
     position: absolute;
+    background-color: gray;
+    z-index: 99;
+    width: 100vw;
+    height: 100vh;
     left: 0;
-    top: 400px;
+    top: 3.5em;
+}
+.Vertical_pad {
+    padding: 12px 0px;
 }
 
 @media screen and (max-width: 980px) and (min-width: 200px) {
