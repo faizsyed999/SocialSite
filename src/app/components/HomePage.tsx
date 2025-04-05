@@ -1,8 +1,9 @@
 import { Fragment, ReactNode, useState } from "react";
 import { Feed, Post as PostBody } from "../types/Types"
+import { tokenSetter } from "../types/Types";
+
 import Post from './Post';
 import Styles from '../../styles/homepage.module.scss';
-import { tokenSetter } from "../types/Types";
 
 
 export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tokenSetter }): ReactNode {
@@ -57,10 +58,11 @@ export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tok
                             </div>
                         </div>
                     </div>
-                    <div className={Styles.menu_item}>
-                        {/* <div className={Styles.menu_item}>
-                        </div> */}
+                    {/* <div className={Styles.menu_item}> */}
                         <div className={Styles.center_area}>
+                            <div className={Styles.post_creator}>
+
+                            </div>
                             {
                                 feed.posts.map((post: PostBody) => <Post username={username} postContent={post.post}
                                     likeCount={String(post.likes.length)} commentCount={post.comments.length.toString()}></Post>)
@@ -68,7 +70,7 @@ export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tok
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </Fragment>
     )
 }

@@ -40,4 +40,3 @@ async function getFeed(token: string): Promise<Response> {
     })
     return response
 }
-

@@ -6,11 +6,9 @@ import FormContainer from './FormContainer';
 import { loginResponse } from "../types/Types"
 import { tokenSetter } from "../types/Types";
 
-// export default function Login({setToken} : {setToken : (token : string) => void }) {
 export default function Login({setToken} : {setToken: tokenSetter}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const [status, setStatus] = useState("pending"); //todo required
     const [register, setRegister] = useState(false);
     const [usernameValid, setUsernameValid] = useState(true);
     const [passwordValid, setPasswordValid] = useState(true);
