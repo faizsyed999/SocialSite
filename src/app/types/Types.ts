@@ -22,7 +22,8 @@ export type loginResponse = {
 }
 
 
-export type tokenSetter =  (token : string | null) => void 
+export type tokenSetter =  (token : string | null) => vcoid 
+export type feedSetter =  (feed : Feed) => void 
 
 
 

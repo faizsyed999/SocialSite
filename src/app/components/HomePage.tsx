@@ -1,24 +1,53 @@
 import { Fragment, ReactNode, useState } from "react";
 import { Feed, Post as PostBody } from "../types/Types"
 import { tokenSetter } from "../types/Types";
+import { feedSetter} from "../types/Types";
+import { endpoint } from '../utils/Constants';
 
 import Post from './Post';
 import Styles from '../../styles/homepage.module.scss';
 
 
-export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tokenSetter }): ReactNode {
+export default function HomePage({ feed, token, setToken, setFeed }:
+     { feed: Feed, token: string, setToken: tokenSetter, setFeed : feedSetter }): ReactNode {
 
     console.log(typeof feed)
     console.log(JSON.stringify(feed))
+    const [postOpen, setPostOpen] = useState(false);
     const username = feed.username
     const LogoutFlow = async (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
         e.preventDefault()
         localStorage.removeItem(`token`)
         setToken(null)
     }
-    const togglemenu = function(){setToggled(!isMobileMenuToggled)}
+    const togglemenu = function () { setToggled(!isMobileMenuToggled) }
 
     const [isMobileMenuToggled, setToggled] = useState(false);
+    const postClickHandler = function() {
+        setPostOpen(true)
+    }
+
+    const postBoxEventHandler = <textarea onClick={postClickHandler} className={Styles.post_box} placeholder="Post Something!"></textarea>;
+
+    async function postHandler(event: React.MouseEvent<HTMLInputElement>) {
+        const postmessage : string = event.currentTarget.value;
+        const postEndpoint: string = `${endpoint}/user/post`;
+        const postResponse = await fetch(postEndpoint, {
+            method: "POST",
+            body: JSON.stringify({ "token": username, "message": postmessage}),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization" : "Bearer ".concat(token)
+            }
+        });
+        if (postResponse.status == 200) {
+           
+            
+            
+            // if sign in is successful then send user to homepage
+        }
+    }
 
     return (
         <Fragment>
@@ -32,13 +61,13 @@ export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tok
                                 <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round" />
                             </svg>
                         </div>
-                        {isMobileMenuToggled && 
-                        <div className={Styles.Vertical_Menu}>
-                            <ul className={Styles.Vertical_Menu_List}>
-                                <li className={Styles.Vertical_pad}>Discover</li>
-                                <li className={Styles.Vertical_pad}>Settings</li>
-                            </ul>
-                        </div>}
+                        {isMobileMenuToggled &&
+                            <div className={Styles.Vertical_Menu}>
+                                <ul className={Styles.Vertical_Menu_List}>
+                                    <li className={Styles.Vertical_pad}>Discover</li>
+                                    <li className={Styles.Vertical_pad}>Settings</li>
+                                </ul>
+                            </div>}
                         <div className={Styles.menu_item}>
                             <p>LOGO</p>
                         </div>
@@ -58,18 +87,29 @@ export default function HomePage({ feed, setToken }: { feed: Feed, setToken: tok
                             </div>
                         </div>
                     </div>
-                    {/* <div className={Styles.menu_item}> */}
-                        <div className={Styles.center_area}>
-                            <div className={Styles.post_creator}>
+                    <div className={Styles.center_area}>
 
-                            </div>
-                            {
-                                feed.posts.map((post: PostBody) => <Post username={username} postContent={post.post}
-                                    likeCount={String(post.likes.length)} commentCount={post.comments.length.toString()}></Post>)
+                        <div className={Styles.post_creator}>
+                            {postOpen ? (
+                               <>
+                                    {postBoxEventHandler}
+                                    <input type="button" value="Post" onClick={postHandler}/>
+                               </>
+
+                            ) : 
+                                <>
+
+                                    {postBoxEventHandler}
+                                </>
                             }
                         </div>
+                        {
+                            feed.posts.map((post: PostBody) => <Post username={username} postContent={post.post}
+                                likeCount={String(post.likes.length)} commentCount={post.comments.length.toString()}></Post>)
+                        }
                     </div>
                 </div>
+            </div>
             {/* </div> */}
         </Fragment>
     )

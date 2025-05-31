@@ -15,8 +15,6 @@ export default function Login({setToken} : {setToken: tokenSetter}) {
 
     if (register) return <Register setToken={setToken}></Register>;
 
-
-    // const invalidInfo = <p>Invalid username or password!</p>;
     const fieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.name == `username`)
             setUsername(e.target.value)

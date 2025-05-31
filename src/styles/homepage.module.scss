@@ -92,6 +92,15 @@ body{
 .Vertical_pad {
     padding: 12px 0px;
 }
+.post_creator{
+    // border: 1px solid black;
+    width: 30%;
+    margin: auto;
+}
+.post_box {
+    width: 100%;
+    resize: none;
+}
 
 @media screen and (max-width: 980px) and (min-width: 200px) {
     .menu_items_list{

@@ -28,7 +28,7 @@ export default function Home(): ReactNode {
         
     if (token === null) return <Login setToken={setToken}></Login>
 
-    return <HomePage feed={feed} setToken={setToken}></HomePage>
+    return <HomePage feed={feed} token={token} setToken={setToken} setFeed={setFeed}></HomePage>
 }
 
 async function getFeed(token: string): Promise<Response> {
